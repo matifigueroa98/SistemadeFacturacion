@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Confirmación de Pedido</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container text-center">
+        <h3 class="mt-5">Confirmación de Pedido</h3>
+        <div class="mt-4">
+            <div class="alert alert-success">
+                <p>Detalles del Pedido:</p>
+                <p>ID Pedido: <span th:text="${order.id}"></span></p>
+                <p>DNI Cliente: <span th:text="${order.client.dni}"></span></p>
+                <p>Nombre del Producto: <span th:text="${order.product.name}"></span></p>
+                <p>Cantidad: <span th:text="${order.quantity}"></span></p>
+                <p>Total bruto del Pedido: <span th:text="${gross}"></span></p>
+            </div>
+            <div class="mt-4">
+                <form method="post" action="/confirmTrue">
+                    <div class="form-group row">
+                        <label for="orderId" class="col-form-label col-form-label-sm">Ingrese el numero del pedido para confirmarlo:</label>
+                        <div class="col">
+                            <input type="number" class="form-control" id="orderId" name="orderId">
+                        </div>
+                        <button type="submit" class="btn btn-success">Confirmar Pedido</button>
+                        <a href="/" class="btn btn-danger btn-lg float-left">Cancelar Pedido</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</body>
+</html>
