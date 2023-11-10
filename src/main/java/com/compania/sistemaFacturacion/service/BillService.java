@@ -38,6 +38,7 @@ public class BillService {
             bill.setTotal(bill.getNetPrice() + bill.getIVAAmount());
             bill.setTotalIVA(bill.getIVAAmount());
             bills.add(bill);
+            System.out.println("Bill request added. Number: " + bill.getId());
         } else {
             throw new NotFoundException("Pedido no encontrado con ID: " + order.getId());
         }
@@ -96,7 +97,7 @@ public class BillService {
     public void cancelBillToCreditNote(Bill bill) {
         if (bill.getStatus()) {
             creditNoteService.addCreditNote(bill);
-            System.out.println("Cancelacion de pedido");
+            System.out.println("Order cancellation number: " + bill.getId());
             bills.remove(bill);
         } else {
             bills.remove(bill); // delete bill before executing it

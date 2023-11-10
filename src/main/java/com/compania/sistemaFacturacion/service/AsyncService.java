@@ -5,6 +5,7 @@ import com.compania.sistemaFacturacion.model.CreditNote;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -20,7 +21,7 @@ public class AsyncService {
     private BillService billService;
     @Autowired
     private CreditNoteService creditNoteService;
-    private static final long CANCELLATION_PERIOD = 60000;
+    private static final long PROCESSING_REPORT = Duration.ofHours(2).toMillis();;
 
     @Async("asyncExecutor")
     public void executeBilling() { // billing process
@@ -28,17 +29,17 @@ public class AsyncService {
             bill.setStatus(Boolean.TRUE);
         }
         try {
-            Thread.sleep(CANCELLATION_PERIOD);
+            Thread.sleep(PROCESSING_REPORT);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
 
-    @Scheduled(cron = "0 48 15 * * ?") // thread scheduled every 1 minute
+    @Scheduled(cron = "0 00 20 * * ?")  // it will run every day at 8 PM
     public void scheduleBillingTask() {
         System.out.println("------------BILLING PROCESS------------");
         executeBilling();
-        System.out.println("------------GENERATING REPORT------------");
+        System.out.println("------------GENERATING REPORT------------"); // report will be ready at 10 PM
         generateReport();
     }
 
