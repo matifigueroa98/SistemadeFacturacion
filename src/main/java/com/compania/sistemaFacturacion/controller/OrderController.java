@@ -1,6 +1,8 @@
 package com.compania.sistemaFacturacion.controller;
 
+import com.compania.sistemaFacturacion.model.Bill;
 import com.compania.sistemaFacturacion.model.Order;
+import com.compania.sistemaFacturacion.service.BillService;
 import com.compania.sistemaFacturacion.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private BillService billService;
 
     @GetMapping("/orderForm")
     public String showForm() {
@@ -23,10 +27,8 @@ public class OrderController {
     }
 
     @PostMapping("/submitOrder")
-    public String submitOrder(@RequestParam("clientId") Integer clientId, @RequestParam("productId") 
-            Integer productId, @RequestParam("quantity") int quantity, Model model) {
+    public String submitOrder(@RequestParam("clientId") Integer clientId, @RequestParam("productId") Integer productId, @RequestParam("quantity") int quantity, Model model) {
         Order order = orderService.addOrder(clientId, productId, quantity);
-
         return "redirect:/confirmationPage?id=" + order.getId();
     }
 
@@ -42,7 +44,19 @@ public class OrderController {
     @PostMapping("/confirmTrue")
     public String confirmOrderTrue(@RequestParam("orderId") Integer orderId) {
         Order order = orderService.updateOrderConfirm(orderId, Boolean.TRUE);
+        billService.addBillFromOrder(order);
         return "redirect:/";
     }
-
+    
+    @GetMapping("/CancelOrder")
+    public String showCancelOrder() {
+        return "Order/CancelOrder";
+    }
+    
+    @PostMapping("/cancelBill")
+    public String cancelBill (@RequestParam("billId") Integer billId){
+        Bill bill = billService.getBillById(billId);
+        
+         return "redirect:/";
+    }
 }

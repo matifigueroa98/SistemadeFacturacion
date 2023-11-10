@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Bill {
 
     private LocalDate date;
-    private Long id;
+    private Integer id;
     private UUID issueCode;
     private char letter;
     private Client client;
@@ -19,14 +19,15 @@ public class Bill {
     private double IVAAmount; // % IVA according to category
     private double total;
     private double totalIVA;
+    private Boolean status; // ff the status is false, the order is pending and if its true, its billed
     
     public Bill(){
         
     }
 
-    public Bill(LocalDate date, Long id, UUID issueCode, char letter, Client client, Product product, 
+    public Bill(LocalDate date, Integer id, UUID issueCode, char letter, Client client, Product product, 
             double unit, double IVAPercentage, int quantity, double salePrice, double netPrice, 
-            double IVAAmount, double total, double totalIVA) {
+            double IVAAmount, double total, double totalIVA, Boolean status) {
         this.date = date;
         this.id = id;
         this.issueCode = issueCode;
@@ -41,6 +42,7 @@ public class Bill {
         this.IVAAmount = IVAAmount;
         this.total = total;
         this.totalIVA = totalIVA;
+        this.status = status;
     }
 
     public LocalDate getDate() {
@@ -51,11 +53,11 @@ public class Bill {
         this.date = date;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -153,5 +155,22 @@ public class Bill {
 
     public void setTotalIVA(double totalIVA) {
         this.totalIVA = totalIVA;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+    
+    @Override
+    public String toString() {
+        return "Factura fecha: " + date + ", ID: " + id + ", CODIGO: " + issueCode + ", LETRA: " 
+                + letter + ", Cliente: " + client.getDni()+ ", Producto: " + product.getName() + 
+                ", Precio unitario: " + unit + ", Porcentaje IVA: " + IVAPercentage + ", Cantidad: " + quantity +
+                ", Precio de venta: " + salePrice + ", " + "Precio neto: " + netPrice + ", Monto de IVA: " + IVAAmount + 
+                ", Total: " + total + ", " + "Total IVA: " + totalIVA;
     }
 }

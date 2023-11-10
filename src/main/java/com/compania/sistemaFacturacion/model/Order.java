@@ -6,19 +6,17 @@ public class Order {
     private Client client;
     private Product product;
     private Boolean confirm; // boolean to confirm the order
-    private Boolean status; // ff the status is false, the order is pending and if its true, its billed
     private int quantity;
 
     public Order() {
 
     }
 
-    public Order(Integer id, Client client, Product product,Boolean confirm,Boolean status, int quantity) {
+    public Order(Integer id, Client client, Product product,Boolean confirm, int quantity) {
         this.id = id;
         this.client = client;
         this.product = product;
         this.confirm = confirm;
-        this.status = status;
         this.quantity = quantity;
     }
 
@@ -54,14 +52,6 @@ public class Order {
         this.confirm = confirm;
     }
 
-    public Boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -73,6 +63,6 @@ public class Order {
     @Override
     public String toString() {
         return "Pedido: " + id + ", DNI Cliente: " + client.getDni() + ", Producto: " + product.getName()
-                + ", Activo: " + status+ ", Confirmado: " + confirm + ", Cantidad: " + quantity;
+                + ", Confirmado: " + confirm + ", Cantidad: " + quantity;
     }
 }

@@ -26,7 +26,6 @@ public class OrderService {
         order.setClient(client);
         order.setProduct(product);
         order.setConfirm(Boolean.FALSE);
-        order.setStatus(Boolean.FALSE);
         order.setQuantity(quantity);
         orders.add(order);
 
@@ -54,6 +53,14 @@ public class OrderService {
             throw new NotFoundException("Pedido no encontrado con ID: " + orderId);
         }
         return order;
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public void clearOrders() {
+        orders.clear();
     }
 
 }

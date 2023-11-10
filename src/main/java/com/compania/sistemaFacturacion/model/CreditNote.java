@@ -6,7 +6,7 @@ import java.util.UUID;
 public class CreditNote {
 
     private LocalDate date;
-    private Long id;
+    private Integer id;
     private UUID issueCode;
     private char letter;
     private Client client;
@@ -16,7 +16,7 @@ public class CreditNote {
         
     }
 
-    public CreditNote(LocalDate date, Long id, UUID issueCode, char letter, Client client, double total) {
+    public CreditNote(LocalDate date, Integer id, UUID issueCode, char letter, Client client, double total) {
         this.date = date;
         this.id = id;
         this.issueCode = issueCode;
@@ -33,11 +33,11 @@ public class CreditNote {
         this.date = date;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
