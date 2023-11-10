@@ -11,9 +11,9 @@ public class CreditNote {
     private char letter;
     private Client client;
     private double total;
-    
-    public CreditNote (){
-        
+
+    public CreditNote() {
+
     }
 
     public CreditNote(LocalDate date, Integer id, UUID issueCode, char letter, Client client, double total) {
@@ -72,4 +72,11 @@ public class CreditNote {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return "Nota de credito fecha: " + date + ", ID: " + id + ", CODIGO: " + issueCode
+                + ", LETRA: " + letter + ", Cliente: " + client.getDni() + ", TOTAL: " + total;
+    }
+
 }

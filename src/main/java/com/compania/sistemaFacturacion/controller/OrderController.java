@@ -1,6 +1,5 @@
 package com.compania.sistemaFacturacion.controller;
 
-import com.compania.sistemaFacturacion.model.Bill;
 import com.compania.sistemaFacturacion.model.Order;
 import com.compania.sistemaFacturacion.service.BillService;
 import com.compania.sistemaFacturacion.service.OrderService;
@@ -47,16 +46,10 @@ public class OrderController {
         billService.addBillFromOrder(order);
         return "redirect:/";
     }
-    
+
     @GetMapping("/CancelOrder")
     public String showCancelOrder() {
         return "Order/CancelOrder";
     }
-    
-    @PostMapping("/cancelBill")
-    public String cancelBill (@RequestParam("billId") Integer billId){
-        Bill bill = billService.getBillById(billId);
-        
-         return "redirect:/";
-    }
+
 }

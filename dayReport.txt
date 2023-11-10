@@ -1,0 +1,5 @@
+DAY: 2023-11-10
+BILLS: 
+1) Client Number: 5 | DNI | B | Bill number: 3 | 2023-11-10 | TOTAL = $1839.2
+CREDIT NOTES: 
+1) Client Number: 3 | DNI | X | Credit Note number: 1 | 2023-11-10 | TOTAL = $306.0

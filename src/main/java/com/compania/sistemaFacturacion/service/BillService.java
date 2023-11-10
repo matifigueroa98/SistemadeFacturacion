@@ -7,17 +7,16 @@ import com.compania.sistemaFacturacion.model.Order;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@EnableScheduling
 public class BillService {
 
     private static Integer billIdCounter = 1;
     private ArrayList<Bill> bills = new ArrayList<>();
+    @Autowired
+    private CreditNoteService creditNoteService;
 
     public void addBillFromOrder(Order order) {
         Bill bill = null;
@@ -57,7 +56,7 @@ public class BillService {
         }
         return letter;
     }
-    
+
     public double generatePercentage(Client client) {
         double percentage = 0;
         if (client != null) {
@@ -93,26 +92,20 @@ public class BillService {
         }
         return toFind;
     }
-    
-    public void cancelBillToCreditNote (Bill bill) {
-        if (bill.getStatus().equals(Boolean.TRUE)){
-            // nota de credito
+
+    public void cancelBillToCreditNote(Bill bill) {
+        if (bill.getStatus()) {
+            creditNoteService.addCreditNote(bill);
+            System.out.println("Cancelacion de pedido");
+            bills.remove(bill);
+        } else {
+            bills.remove(bill); // delete bill before executing it
         }
     }
 
-    @Async("asyncExecutor")
-    public void executeBilling() {
-
-        for (Bill bill : bills) {
-            bill.setStatus(Boolean.TRUE);
-            System.out.println(bill.toString());
-            System.out.println(bill.getStatus());
-        }
+    public String generateBillContent(Bill bill) {
+        return "Client Number: " + bill.getClient().getId() + " | " + bill.getClient().getDniType() + " | "
+                + bill.getLetter() + " | Bill number: " + bill.getId() + " | " + bill.getDate() + " | TOTAL = $"
+                + bill.getTotal();
     }
-
-    @Scheduled(initialDelay = 0, fixedRate = 60000)
-    public void scheduleBillingTask() {
-        executeBilling();
-    }
-
 }
