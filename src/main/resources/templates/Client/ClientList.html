@@ -12,8 +12,8 @@
                 <th>ID</th>
                 <th>Direccion</th>
                 <th>Condicion Impositiva</th>
-                <th>Tipo DNI</th>
-                <th>DNI</th>
+                <th>Tipo Documento</th>
+                <th>Numero Documento</th>
             </tr>
             <tr th:each="client, rowStat : ${clients}"  th:class="${rowStat.odd} ? 'odd' : 'even'">
                 <td th:text="${client.id}"></td>

@@ -14,10 +14,13 @@
                 <form method="post" action="/cancelBill">
                      <div class="form-group mx-sm-3 mb-2">
                         <label for="billId" class="sr-only" >ID del Pedido</label>
-                        <input type="number" class="form-control" id="billId" name="billId">
-                    </div>
-                    <button type="submit" class="btn btn-danger">Cancelar Pedido</button>
+                        <input type="number" class="form-control" id="billId" name="billId"
+                                placeholder="1,2,3" required>
+                     </div>
+                     <button type="submit" class="btn btn-danger">Cancelar Pedido</button>
                 </form>
+                <br/>
+                <a href="/" class="btn btn-primary btn-lg">Volver atrás</a>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -9,17 +9,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
+    private static ClientService instance; // Singleton pattern
     private ArrayList<Client> clients = new ArrayList<>();
+    
+    private ClientService() {
+        clientsCreator();
+    }
+    
+    public static ClientService getInstance() { // unique instance
+        if (instance == null) {
+            instance = new ClientService();
+        }
+        return instance;
+    }
 
     public ArrayList<Client> getClients() {
-        if (clients.isEmpty()) {
-            clientsCreator();
-        }
         return clients;
     }
 
-    public Client getClientById(Integer clientId){
-        clientsCreator();
+    public void addClient(String address, Integer dni, String dniType, String taxCondition) {
+        Client client = new Client();
+        client.setId(clients.size() + 1);
+        client.setAddress(address);
+        client.setDni(dni);
+        client.setDniType(dniType);
+        client.setTaxCondition(taxCondition);
+        clients.add(client);
+    }
+
+    public Client getClientById(Integer clientId) {
         Client toFind = null;
         for (Client client : clients) {
             if (client.getId().equals(clientId)) {
@@ -32,21 +50,23 @@ public class ClientService {
         return toFind;
     }
 
-    public void clientsCreator() {
+    private void clientsCreator() {
         int i = 0, dni;
         ArrayList<String> address = new ArrayList<>(
                 List.of("La Rioja 1345", "Cordoba 2300", "Av. Colon 3231", "Irigoyen 4223", "Av. Independencia 5323",
                         "Rivadavia 6231", "Catamarca 27", "Maipu 831", "Dorrego 921", "Strobel 10"));
         ArrayList<String> taxCondition = new ArrayList<>(
                 List.of("Responsable inscripto", "Monotributo", "IVA no responsable"));
-
+        ArrayList<String> dniType = new ArrayList<>(
+                List.of("DNI", "CUIT", "PASAPORTE"));
         while (i < 10) {
             dni = (int) (Math.random() * 100000000);
             String condition = taxCondition.get(i % taxCondition.size());
-            Client client = new Client(i+1, address.get(i), condition, "DNI", dni);
+            String type = dniType.get(i % dniType.size());
+            Client client = new Client(i + 1, address.get(i), condition, type, dni);
             clients.add(client);
             i++;
         }
     }
-    
+
 }
