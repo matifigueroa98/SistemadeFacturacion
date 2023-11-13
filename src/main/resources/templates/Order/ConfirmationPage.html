@@ -9,15 +9,14 @@
 </head>
 <body>
     <div class="container text-center">
-        <h3 class="mt-5">Confirmación de Pedido</h3>
+        <h3 class="mt-5">Confirmación del Pedido</h3>
         <div class="mt-4">
             <div class="alert alert-success">
-                <p>Detalles del Pedido:</p>
-                <p>ID Pedido: <span th:text="${order.id}"></span></p>
+                <p>Numero del Pedido: <span th:text="${order.id}"></span></p>
                 <p>DNI Cliente: <span th:text="${order.client.dni}"></span></p>
                 <p>Nombre del Producto: <span th:text="${order.product.name}"></span></p>
                 <p>Cantidad: <span th:text="${order.quantity}"></span></p>
-                <p>Total bruto del Pedido: <span th:text="${gross}"></span></p>
+                <p>Total bruto del Pedido: $<span th:text="${gross}"></span></p>
             </div>
             <div class="mt-4">
                 <form method="post" action="/confirmTrue">

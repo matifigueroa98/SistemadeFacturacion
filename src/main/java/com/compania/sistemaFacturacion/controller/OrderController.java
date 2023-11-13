@@ -1,8 +1,11 @@
 package com.compania.sistemaFacturacion.controller;
 
 import com.compania.sistemaFacturacion.model.Order;
+import com.compania.sistemaFacturacion.model.Product;
 import com.compania.sistemaFacturacion.service.BillService;
 import com.compania.sistemaFacturacion.service.OrderService;
+import com.compania.sistemaFacturacion.service.ProductService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +22,13 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private BillService billService;
-
+    @Autowired
+    private ProductService productService;
+    
     @GetMapping("/orderForm")
-    public String showForm() {
+    public String showForm(Model model) {
+        List<Product> products = productService.getProducts();
+        model.addAttribute("products", products);
         return "Order/OrderForm";
     }
 

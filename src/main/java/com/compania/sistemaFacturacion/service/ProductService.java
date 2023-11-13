@@ -10,17 +10,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
+    private static ProductService instance; // Singleton pattern
     private ArrayList<Product> products = new ArrayList<>();
 
-    public ArrayList<Product> getProducts() {
-        if (products.isEmpty()) {
-            productsCreator();
+    private ProductService() {
+        productsCreator();
+    }
+
+    public static ProductService getInstance() { // unique instance
+        if (instance == null) {
+            instance = new ProductService();
         }
+        return instance;
+    }
+
+    public ArrayList<Product> getProducts() {
         return products;
     }
     
     public Product getProductById(Integer productId){
-        productsCreator();
         Product toFind = null;
         for (Product product : products) {
             if (product.getId().equals(productId)) {
@@ -33,20 +41,20 @@ public class ProductService {
         return toFind;
     }
 
-    public void productsCreator() {
+    private void productsCreator() {
         int i = 0;
         HashMap<String, Double> names = new HashMap<>() {
             {
-                put("Teléfono", 523.0);
-                put("Tablet", 297.0);
-                put("Televisor", 760.0);
-                put("Laptop", 1234.0);
-                put("Computadora", 1400.0);
-                put("Parlantes", 150.0);
-                put("Auriculares", 115.0);
-                put("Monitor", 180.0);
-                put("Teclado", 90.0);
-                put("Mouse", 100.0);
+                put("Teléfono", 523.00);
+                put("Tablet", 297.50);
+                put("Televisor", 760.00);
+                put("Laptop", 1234.70);
+                put("Computadora", 1400.20);
+                put("Parlantes", 150.00);
+                put("Auriculares", 115.00);
+                put("Monitor", 180.00);
+                put("Teclado", 90.90);
+                put("Mouse", 100.00);
             }
         };
 
