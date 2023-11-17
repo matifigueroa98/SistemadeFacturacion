@@ -27,9 +27,10 @@ public class ClientService {
         return clients;
     }
 
-    public void addClient(String address, Integer dni, String dniType, String taxCondition) {
+    public void addClient(String address,String name, String dni, String dniType, String taxCondition) {
         Client client = new Client();
         client.setId(clients.size() + 1);
+        client.setName(name);
         client.setAddress(address);
         client.setDni(dni);
         client.setDniType(dniType);
@@ -52,6 +53,10 @@ public class ClientService {
 
     private void clientsCreator() {
         int i = 0, dni;
+        String dniStr;
+        ArrayList<String> name = new ArrayList<>(
+                List.of("Pedro", "Carlos", "Agustin", "Franco", "Esteban",
+                        "Matias", "Micaela", "Sofia", "Julieta", "Nicolas"));
         ArrayList<String> address = new ArrayList<>(
                 List.of("La Rioja 1345", "Cordoba 2300", "Av. Colon 3231", "Irigoyen 4223", "Av. Independencia 5323",
                         "Rivadavia 6231", "Catamarca 27", "Maipu 831", "Dorrego 921", "Strobel 10"));
@@ -61,9 +66,10 @@ public class ClientService {
                 List.of("DNI", "CUIT", "PASAPORTE"));
         while (i < 10) {
             dni = (int) (Math.random() * 100000000);
+            dniStr = String.valueOf(dni);
             String condition = taxCondition.get(i % taxCondition.size());
             String type = dniType.get(i % dniType.size());
-            Client client = new Client(i + 1, address.get(i), condition, type, dni);
+            Client client = new Client(i + 1, name.get(i), address.get(i), condition, type, dniStr);
             clients.add(client);
             i++;
         }

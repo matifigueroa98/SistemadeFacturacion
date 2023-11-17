@@ -4,17 +4,19 @@ package com.compania.sistemaFacturacion.model;
 public class Client {
 
     private Integer id;
+    private String name;
     private String address;
     private String taxCondition;
     private String dniType; // dni, cuit, etc
-    private int dni;
+    private String dni;
     
     public Client(){
         
     }
 
-    public Client(Integer id, String address, String taxCondition, String dniType, int dni) {
+    public Client(Integer id,String name,String address, String taxCondition, String dniType, String dni) {
         this.id = id;
+        this.name = name;
         this.address = address;
         this.taxCondition = taxCondition;
         this.dniType = dniType;
@@ -27,6 +29,14 @@ public class Client {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -53,11 +63,11 @@ public class Client {
         this.dniType = dniType;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 }

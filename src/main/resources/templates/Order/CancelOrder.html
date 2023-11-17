@@ -12,12 +12,16 @@
             <h3 class="mt-5">Cancelar Pedido</h3>
             <div class="mt-4">
                 <form method="post" action="/cancelBill">
-                     <div class="form-group mx-sm-3 mb-2">
-                        <label for="billId" class="sr-only" >ID del Pedido</label>
-                        <input type="number" class="form-control" id="billId" name="billId"
-                                placeholder="1,2,3" required>
-                     </div>
-                     <button type="submit" class="btn btn-danger">Cancelar Pedido</button>
+                    <div class="form-group">
+                        <label for="billId">Pedido:</label>
+                        <select class="form-control" id="billId" name="billId" required>
+                            <option value="" disabled selected>Seleccione un pedido a cancelar</option>
+                            <option th:each="bill : ${bills}" th:value="${bill.id}" 
+                                    th:text="${bill.date + ' - Cliente: '+ bill.client.name 
+                                    + ' - Total: $' + bill.total}"></option>
+                        </select> 
+                    </div>
+                    <button type="submit" class="btn btn-danger">Cancelar Pedido</button>
                 </form>
                 <br/>
                 <a href="/" class="btn btn-primary btn-lg">Volver atrás</a>

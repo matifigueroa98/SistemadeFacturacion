@@ -19,7 +19,7 @@ public class Bill {
     private double IVAAmount; // % IVA according to category
     private double total;
     private double totalIVA;
-    private Boolean status; // ff the status is false, the order is pending and if its true, its billed
+    private Boolean status; // if the status is false, the order is pending and if its true, its billed
     
     public Bill(){
         

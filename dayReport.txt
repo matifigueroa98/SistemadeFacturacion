@@ -1,5 +1,5 @@
-DAY: 2023-11-10
+DAY: 2023-11-16
 BILLS: 
-1) Client Number: 8 | DNI | B | Bill number: 1 | 2023-11-10 | TOTAL = $544.5
+1) Client Number: 5 | CUIT | B | Bill number: 3 | 2023-11-16 | TOTAL = $3388.4840000000004
 CREDIT NOTES: 
-1) Client Number: 5 | DNI | B | Credit Note number: 1 | 2023-11-10 | TOTAL = $1078.1100000000001
+1) Client Number: 3 | PASAPORTE | X | Credit Note number: 1 | 2023-11-16 | TOTAL = $391.0

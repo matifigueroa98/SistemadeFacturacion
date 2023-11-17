@@ -10,13 +10,13 @@ public class CreditNote {
     private UUID issueCode;
     private char letter;
     private Client client;
-    private double total;
+    private Double total;
 
     public CreditNote() {
 
     }
 
-    public CreditNote(LocalDate date, Integer id, UUID issueCode, char letter, Client client, double total) {
+    public CreditNote(LocalDate date, Integer id, UUID issueCode, char letter, Client client, Double total) {
         this.date = date;
         this.id = id;
         this.issueCode = issueCode;
@@ -69,7 +69,7 @@ public class CreditNote {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 

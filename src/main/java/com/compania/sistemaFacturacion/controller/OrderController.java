@@ -1,8 +1,11 @@
 package com.compania.sistemaFacturacion.controller;
 
+import com.compania.sistemaFacturacion.model.Bill;
+import com.compania.sistemaFacturacion.model.Client;
 import com.compania.sistemaFacturacion.model.Order;
 import com.compania.sistemaFacturacion.model.Product;
 import com.compania.sistemaFacturacion.service.BillService;
+import com.compania.sistemaFacturacion.service.ClientService;
 import com.compania.sistemaFacturacion.service.OrderService;
 import com.compania.sistemaFacturacion.service.ProductService;
 import java.util.List;
@@ -24,11 +27,15 @@ public class OrderController {
     private BillService billService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ClientService clientService;
     
     @GetMapping("/orderForm")
     public String showForm(Model model) {
         List<Product> products = productService.getProducts();
         model.addAttribute("products", products);
+        List<Client> clients = clientService.getClients();
+        model.addAttribute("clients", clients);
         return "Order/OrderForm";
     }
 
@@ -55,7 +62,9 @@ public class OrderController {
     }
 
     @GetMapping("/CancelOrder")
-    public String showCancelOrder() {
+    public String showCancelOrder(Model model) {
+        List<Bill> bills = billService.getBills();
+        model.addAttribute("bills", bills);
         return "Order/CancelOrder";
     }
 

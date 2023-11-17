@@ -13,14 +13,19 @@
             <div class="mt-4">
                 <form method="post" action="/submitOrder">
                     <div class="form-group">
-                        <label for="clientId">ID del Cliente:</label>
-                        <input type="number" class="form-control" id="clientId" name="clientId"
-                               placeholder="1,2,3" required>
+                        <label for="clientId">Cliente:</label>
+                        <select class="form-control" id="clientId" name="clientId" required>
+                            <option value="" disabled selected>Seleccione un cliente</option>
+                            <option th:each="client : ${clients}" th:value="${client.id}" 
+                                    th:text="${client.name + ' - DNI: ' + client.dni}"></option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="productId">Producto:</label>
                         <select class="form-control" id="productId" name="productId" required>
-                           <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+                            <option value="" disabled selected>Seleccione un producto</option>
+                            <option th:each="product : ${products}" th:value="${product.id}" 
+                                    th:text="${product.name + ' - Precio: $'+ product.price}"></option>
                         </select> 
                     </div>
                     <div class="form-group">
