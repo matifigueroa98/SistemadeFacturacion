@@ -3,13 +3,8 @@ package com.compania.sistemaFacturacion.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class CreditNote {
+public class CreditNote extends Document {
 
-    private LocalDate date;
-    private Integer id;
-    private UUID issueCode;
-    private char letter;
-    private Client client;
     private Double total;
 
     public CreditNote() {
@@ -17,52 +12,58 @@ public class CreditNote {
     }
 
     public CreditNote(LocalDate date, Integer id, UUID issueCode, char letter, Client client, Double total) {
-        this.date = date;
-        this.id = id;
-        this.issueCode = issueCode;
-        this.letter = letter;
-        this.client = client;
+        super(date, id, issueCode, letter, client);
         this.total = total;
     }
 
+    @Override
     public LocalDate getDate() {
-        return date;
+        return super.getDate();
     }
 
+    @Override
     public void setDate(LocalDate date) {
-        this.date = date;
+        super.setDate(date);
     }
 
+    @Override
     public Integer getId() {
-        return id;
+        return super.getId();
     }
 
+    @Override
     public void setId(Integer id) {
-        this.id = id;
+        super.setId(id);
     }
 
+    @Override
     public UUID getIssueCode() {
-        return issueCode;
+        return super.getIssueCode();
     }
 
+    @Override
     public void setIssueCode(UUID issueCode) {
-        this.issueCode = issueCode;
+        super.setIssueCode(issueCode);
     }
 
+    @Override
     public char getLetter() {
-        return letter;
+        return super.getLetter();
     }
 
+    @Override
     public void setLetter(char letter) {
-        this.letter = letter;
+        super.setLetter(letter);
     }
 
+    @Override
     public Client getClient() {
-        return client;
+        return super.getClient();
     }
 
+    @Override
     public void setClient(Client client) {
-        this.client = client;
+        super.setClient(client);
     }
 
     public double getTotal() {
@@ -75,8 +76,8 @@ public class CreditNote {
 
     @Override
     public String toString() {
-        return "Nota de credito fecha: " + date + ", ID: " + id + ", CODIGO: " + issueCode
-                + ", LETRA: " + letter + ", Cliente: " + client.getDni() + ", TOTAL: " + total;
+        return "Nota de credito fecha: " + getDate() + ", ID: " + getId() + ", CODIGO: " + getIssueCode()
+                + ", LETRA: " + getLetter() + ", Cliente: " + getClient().getDni() + ", TOTAL: " + total;
     }
 
 }

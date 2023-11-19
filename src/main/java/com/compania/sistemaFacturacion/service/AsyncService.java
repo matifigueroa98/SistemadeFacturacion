@@ -21,7 +21,7 @@ public class AsyncService {
     private BillService billService;
     @Autowired
     private CreditNoteService creditNoteService;
-    private static final long PROCESSING_REPORT = Duration.ofHours(2).toMillis();;
+    private static final long PROCESSING_REPORT = Duration.ofMinutes(3).toMillis();;
 
     @Async("asyncExecutor")
     public void executeBilling() { // billing process

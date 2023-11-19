@@ -3,13 +3,8 @@ package com.compania.sistemaFacturacion.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Bill {
+public class Bill extends Document {
 
-    private LocalDate date;
-    private Integer id;
-    private UUID issueCode;
-    private char letter;
-    private Client client;
     private Product product;
     private double unit;
     private double IVAPercentage;
@@ -20,19 +15,15 @@ public class Bill {
     private double total;
     private double totalIVA;
     private Boolean status; // if the status is false, the order is pending and if its true, its billed
-    
-    public Bill(){
-        
+
+    public Bill() {
+
     }
 
-    public Bill(LocalDate date, Integer id, UUID issueCode, char letter, Client client, Product product, 
-            double unit, double IVAPercentage, int quantity, double salePrice, double netPrice, 
-            double IVAAmount, double total, double totalIVA, Boolean status) {
-        this.date = date;
-        this.id = id;
-        this.issueCode = issueCode;
-        this.letter = letter;
-        this.client = client;
+    public Bill(Product product, double unit, double IVAPercentage, int quantity, double salePrice,
+            double netPrice, double IVAAmount, double total, double totalIVA, Boolean status, LocalDate date,
+            Integer id, UUID issueCode, char letter, Client client) {
+        super(date, id, issueCode, letter, client);
         this.product = product;
         this.unit = unit;
         this.IVAPercentage = IVAPercentage;
@@ -45,44 +36,54 @@ public class Bill {
         this.status = status;
     }
 
+    @Override
     public LocalDate getDate() {
-        return date;
+        return super.getDate();
     }
 
+    @Override
     public void setDate(LocalDate date) {
-        this.date = date;
+        super.setDate(date);
     }
 
+    @Override
     public Integer getId() {
-        return id;
+        return super.getId();
     }
 
+    @Override
     public void setId(Integer id) {
-        this.id = id;
+        super.setId(id);
     }
 
+    @Override
     public UUID getIssueCode() {
-        return issueCode;
+        return super.getIssueCode();
     }
 
+    @Override
     public void setIssueCode(UUID issueCode) {
-        this.issueCode = issueCode;
+        super.setIssueCode(issueCode);
     }
 
+    @Override
     public char getLetter() {
-        return letter;
+        return super.getLetter();
     }
 
+    @Override
     public void setLetter(char letter) {
-        this.letter = letter;
+        super.setLetter(letter);
     }
 
+    @Override
     public Client getClient() {
-        return client;
+        return super.getClient();
     }
 
+    @Override
     public void setClient(Client client) {
-        this.client = client;
+        super.setClient(client);
     }
 
     public Product getProduct() {
@@ -164,13 +165,13 @@ public class Bill {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-    
+
     @Override
     public String toString() {
-        return "Factura fecha: " + date + ", ID: " + id + ", CODIGO: " + issueCode + ", LETRA: " 
-                + letter + ", Cliente: " + client.getDni()+ ", Producto: " + product.getName() + 
-                ", Precio unitario: " + unit + ", Porcentaje IVA: " + IVAPercentage + ", Cantidad: " + quantity +
-                ", Precio de venta: " + salePrice + ", " + "Precio neto: " + netPrice + ", Monto de IVA: " + IVAAmount + 
-                ", Total: " + total + ", " + "Total IVA: " + totalIVA;
+        return "Factura fecha: " + getDate() + ", ID: " + getId() + ", CODIGO: " + getIssueCode() + ", LETRA: "
+                + getLetter() + ", Cliente: " + getClient().getDni() + ", Producto: " + product.getName()
+                + ", Precio unitario: " + unit + ", Porcentaje IVA: " + IVAPercentage + ", Cantidad: " + quantity
+                + ", Precio de venta: " + salePrice + ", " + "Precio neto: " + netPrice + ", Monto de IVA: " + IVAAmount
+                + ", Total: " + total + ", " + "Total IVA: " + totalIVA;
     }
 }

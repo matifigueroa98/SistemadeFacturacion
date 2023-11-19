@@ -1,41 +1,42 @@
 package com.compania.sistemaFacturacion.model;
 
-public class Order {
-
-    private Integer id;
-    private Client client;
+public class Order extends Document {
+    
     private Product product;
     private Boolean confirm; // boolean to confirm the order
     private int quantity;
-
+    
     public Order() {
-
+        
     }
-
-    public Order(Integer id, Client client, Product product,Boolean confirm, int quantity) {
-        this.id = id;
-        this.client = client;
+    
+    public Order(Integer id, Client client, Product product, Boolean confirm, int quantity) {
+        super(id, client);
         this.product = product;
         this.confirm = confirm;
         this.quantity = quantity;
     }
-
+    
+    @Override
     public Integer getId() {
-        return id;
+        return super.getId();
     }
-
+    
+    @Override
     public void setId(Integer id) {
-        this.id = id;
+        super.setId(id);
     }
-
+    
+    @Override
     public Client getClient() {
-        return client;
+        return super.getClient();
     }
-
+    
+    @Override
     public void setClient(Client client) {
-        this.client = client;
+        super.setClient(client);
     }
-
+    
     public Product getProduct() {
         return product;
     }
@@ -62,7 +63,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Pedido: " + id + ", DNI Cliente: " + client.getDni() + ", Producto: " + product.getName()
+        return "Pedido: " + getId() + ", DNI Cliente: " + getClient().getDni() + ", Producto: " + product.getName()
                 + ", Confirmado: " + confirm + ", Cantidad: " + quantity;
     }
 }
