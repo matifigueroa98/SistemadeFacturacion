@@ -1,10 +1,12 @@
-DAY: 2023-11-19
+DAY: 2023-11-20
 BILLS: 
-1) Client Number: 4 | DNI | A | Bill number: 1 | 2023-11-19 | TOTAL = $327.39875
-2) Client Number: 1 | DNI | A | Bill number: 4 | 2023-11-19 | TOTAL = $2509.14
-3) Client Number: 5 | CUIT | B | Bill number: 6 | 2023-11-19 | TOTAL = $121.0
-4) Client Number: 2 | CUIT | B | Bill number: 7 | 2023-11-19 | TOTAL = $605.0
+1) Client Number: 6 | PASAPORTE | X | Bill number: 1 | 2023-11-20 | TOTAL = $680.0
+2) Client Number: 8 | CUIT | B | Bill number: 2 | 2023-11-20 | TOTAL = $4481.961
+3) Client Number: 7 | DNI | A | Bill number: 4 | 2023-11-20 | TOTAL = $495.225
+4) Client Number: 10 | DNI | A | Bill number: 6 | 2023-11-20 | TOTAL = $632.7875
+5) Client Number: 8 | CUIT | B | Bill number: 9 | 2023-11-20 | TOTAL = $242.0
 CREDIT NOTES: 
-1) Client Number: 9 | PASAPORTE | X | Credit Note number: 1 | 2023-11-19 | TOTAL = $510.0
-2) Client Number: 3 | PASAPORTE | X | Credit Note number: 2 | 2023-11-19 | TOTAL = $612.0
-3) Client Number: 10 | DNI | A | Credit Note number: 3 | 2023-11-19 | TOTAL = $654.7975
+1) Client Number: 3 | PASAPORTE | X | Credit Note number: 1 | 2023-11-20 | TOTAL = $765.0
+2) Client Number: 4 | DNI | A | Credit Note number: 2 | 2023-11-20 | TOTAL = $330.15
+3) Client Number: 5 | CUIT | B | Credit Note number: 3 | 2023-11-20 | TOTAL = $653.4
+4) Client Number: 3 | PASAPORTE | X | Credit Note number: 4 | 2023-11-20 | TOTAL = $6296.970000000001

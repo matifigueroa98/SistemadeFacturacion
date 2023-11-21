@@ -6,6 +6,7 @@ import com.compania.sistemaFacturacion.model.Client;
 import com.compania.sistemaFacturacion.model.Order;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,6 +103,17 @@ public class BillService {
         } else {
             bills.remove(bill); // delete bill before executing it
         }
+    }
+
+    public void clearBillsAndCreditNotes() {
+        Iterator<Bill> iterator = bills.iterator();
+        while (iterator.hasNext()) {
+            Bill bill = iterator.next();
+            if (bill.getStatus()) { // delete only bills that went through the billing process
+                iterator.remove();
+            }
+        }
+        creditNoteService.clearCreditNotes();
     }
 
     public String generateBillContent(Bill bill) {

@@ -22,9 +22,13 @@ public class CreditNoteService {
         creditNote.setTotal(bill.getTotal());
         creditNotes.add(creditNote);
     }
-    
+
     public ArrayList<CreditNote> getCreditNotes() {
         return creditNotes;
+    }
+
+    public void clearCreditNotes() {
+        creditNotes.clear();
     }
 
     public String generateCreditNoteContent(CreditNote creditNote) {

@@ -59,8 +59,4 @@ public class OrderService {
         return orders;
     }
 
-    public void clearOrders() {
-        orders.clear();
-    }
-
 }

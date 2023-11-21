@@ -21,7 +21,7 @@ public class AsyncService {
     private BillService billService;
     @Autowired
     private CreditNoteService creditNoteService;
-    private static final long PROCESSING_REPORT = Duration.ofMinutes(3).toMillis();;
+    private static final long PROCESSING_REPORT = Duration.ofHours(2).toMillis();;
 
     @Async("asyncExecutor")
     public void executeBilling() { // billing process
@@ -41,6 +41,7 @@ public class AsyncService {
         executeBilling();
         System.out.println("------------GENERATING REPORT------------"); // report will be ready at 10 PM
         generateReport();
+        billService.clearBillsAndCreditNotes();
     }
 
     public void createReportOfTheDay(String file) {
@@ -51,10 +52,12 @@ public class AsyncService {
             writer.write("BILLS: ");
             writer.newLine();
             for (Bill bill : billService.getBills()) {
-                i++;
-                String content = i + ") " + billService.generateBillContent(bill);
-                writer.write(content);
-                writer.newLine();
+                if (bill.getStatus()) {
+                    i++;
+                    String content = i + ") " + billService.generateBillContent(bill);
+                    writer.write(content);
+                    writer.newLine();
+                }
             }
             writer.write("CREDIT NOTES: ");
             writer.newLine();
@@ -74,6 +77,4 @@ public class AsyncService {
         String report = "dayReport.txt";
         createReportOfTheDay(report);
     }
-    
-
 }
